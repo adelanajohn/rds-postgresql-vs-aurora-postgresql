@@ -380,49 +380,6 @@ Aurora offers two configuration options with different I/O pricing models:
 - Single storage cost for entire cluster (replicas share volume)
 - Predictable per-GB pricing
 
-### Cost Optimization Strategies
-
-**RDS PostgreSQL Cost Optimization:**
-
-1. **Right-size instances:** Use CloudWatch metrics to identify over-provisioned instances. Downsizing from db.r6g.xlarge to db.r6g.large can save $140/month
-2. **Reserved Instances:** Provides up to 69% savings for predictable workloads
-3. **Storage optimization:**
-   - Use gp3 instead of gp2 for better price-performance
-   - Provision only necessary IOPS for io2 storage
-   - Enable storage auto-scaling to avoid over-provisioning
-4. **Graviton instances:** db.r6g instances provide ~20% better price-performance than db.r5
-5. **Multi-AZ deployment type:** For read-heavy workloads, Multi-AZ with two readable standbys distributes read traffic, potentially eliminating need for separate read replicas
-6. **Read replica placement:** Place read replicas in same AZ as application to avoid cross-AZ data transfer charges
-
-**Aurora PostgreSQL Cost Optimization:**
-
-1. **I/O optimization:**
-   - Upgrade to latest version for improved I/O efficiency (up to 5x better for certain operations)
-   - Tune autovacuum parameters to reduce background I/O
-   - Use appropriate indexes to minimize sequential scans
-   - Consider I/O-Optimized for high-throughput workloads
-2. **Aurora Serverless v2:** For variable workloads, Serverless can reduce costs by 40-70% compared to provisioned instances
-3. **Instance right-sizing:** Aurora's storage independence means you can scale compute up/down based solely on CPU/memory needs
-4. **Storage efficiency:**
-   - Regular data archival to leverage automatic storage shrinking
-   - Utilize Aurora's faster query performance to reduce compute time
-5. **Reserved Instances:** Commit to baseline capacity for discounted pricing
-6. **Fast cloning:** Use clones instead of full copies for development/testing (copy-on-write reduces storage costs)
-7. **Optimize read replica count:** Aurora replicas share storage, so replica costs are compute-only
-
-#### RDS's Provisioned Model
-
-**Advantages:**
-- Predictable monthly costs
-- No surprise I/O charges
-- Simple pricing structure for steady-state workloads
-
-**Challenges:**
-- Must provision storage capacity upfront
-- Cannot decrease provisioned storage
-- Separate storage cost for each read replica
-- Over-provisioning common to accommodate growth
-
 ### Break-Even Analysis Based on Workload Patterns
 
 #### When Aurora is More Cost-Effective
