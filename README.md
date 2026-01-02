@@ -14,8 +14,7 @@ This technical guide examines the architectural differences, performance charact
 
 | Category | Feature | Amazon RDS PostgreSQL | Amazon Aurora PostgreSQL |
 |-----------------|-----------------|----------------------|-------------------------|
-| **Architecture** | Storage | Traditional EBS-based storage | Distributed, cloud-native storage |
-| | Storage Type |EBS volumes (gp2/gp3/io1/io2) | Aurora distributed storage |
+| **Architecture** | Storage Type | Traditional EBS-based storage | Distributed, cloud-native storage |
 | | Storage Limit | Up to 64 TiB | Up to 256 TiB |
 | | Compute/Storage Separation | No (tied to instance) | Yes (fully separated for better scalability and performance) |
 | | Cluster vs Instance | Single instance or Multi-AZ deployments | Cluster-based (writer + up to 15 readers) |
