@@ -116,7 +116,7 @@ Aurora automatically provides Multi-AZ deployment through its distributed storag
 
 Aurora PostgreSQL delivers superior performance through its architectural optimizations:
 
-- **Write Performance**: Aurora can achieve up to [200,000 writes per second](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-poc.html)
+- **Write Performance**: Aurora can achieve up to [200,000 writes per second](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-poc.html#Aurora.PoC.Workload)
 - **Read Performance**: With read replicas, Aurora can deliver even higher read throughput with minimal replication lag
 - **Real-World Performance**: Netflix achieved up to [75% faster response times](https://aws.amazon.com/blogs/database/netflix-consolidates-relational-database-infrastructure-on-amazon-aurora-achieving-up-to-75-improved-performance/) with Aurora, with architectural improvements minimizing network overhead
 
@@ -417,7 +417,7 @@ When I/O costs exceed 25% of database spend in Aurora Standard, switching to I/O
 - Startups and small businesses with budget limitations
 - Non-production environments where performance is less critical
 
-### TCO Modeling Example: Production Application
+### TCO Modeling Example
 
 **Scenario:** E-commerce application with high transaction volume
 
