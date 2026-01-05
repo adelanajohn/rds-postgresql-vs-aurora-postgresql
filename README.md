@@ -16,10 +16,10 @@ This technical guide examines the architectural differences, performance charact
 |-----------------|-----------------|----------------------|-------------------------|
 | **Architecture** | Storage Type | Traditional EBS-based storage | Distributed, cloud-native storage |
 | | Storage Limit | Up to 64 TiB | Up to 256 TiB |
-| | Compute/Storage Separation | No (tied to instance) | Yes (fully separated for better scalability and performance) |
+| | Compute/Storage Separation | No (storage tied to instance) | Yes (storage fully separated for better scalability and performance) |
 | | Cluster vs Instance | Single instance or Multi-AZ deployments | Cluster-based (writer + up to 15 readers) |
 | | Multi-AZ | Multi-AZ DB instance (one standby replica, not readable); Multi-AZ DB cluster (primary + two readable standbys across 3 AZs) | 6 copies of data across 3 AZs in shared cluster volume; you only pay for one copy of the data |
-| | Storage Behavior | Allocated space doesn't decrease | Dynamic - space freed when data is deleted |
+| | Storage Behavior | Allocated space doesn't decrease when data is deleted| Dynamic - space freed when data is deleted |
 | **High Availability & DR** | Failover Time | Typically 60-120 seconds. Could be under 35 seconds for Multi-AZ with 2 standbys | Typically under 30 seconds |
 | | RPO/RTO | Near-zero RPO with Multi-AZ; RTO minutes | Near-zero RPO; faster RTO due to shared storage |
 | | Cross-Region Replication | Read replicas | Aurora Global Database (low-latency cross-region reads) |
@@ -36,8 +36,8 @@ This technical guide examines the architectural differences, performance charact
 | | Pricing Model | Instance hours + provisioned storage + I/O | Instance hours + storage consumption + I/O (often lower TCO for high-I/O workloads; I/O-Optimized option) |
 | | I/O Costs | Included in provisioned storage | Separate (or included in I/O-Optimized configuration) |
 | | Storage Costs | Provisioned (pay for allocated) | Consumption-based (pay for used) |
-| | Optimization | RDS Reserved Instances, Database Savings Plans, storage optimization | Reserved DB instances, Database Savings Plans; often lower for variable/high-performance workloads; break-even for read-heavy or scalable apps |
-| **PostgreSQL Compatibility** | Versions | Supports latest community versions faster | Some Aurora-specific optimizations (may lag slightly) |
+| | Optimization | RDS Reserved Instances, Database Savings Plans, storage optimization | Reserved DB instances, Database Savings Plans; often lower for variable/high-performance workloads |
+| **PostgreSQL Compatibility** | Versions | Supports latest community versions faster | Includes some Aurora-specific optimizations (may lag slightly) |
 | | Extensions | Broad support (trusted extensions, pg_tle for custom) | Curated list (similar but some limitations; pg_tle supported) |
 | | Limitations | Fewer engine-specific constraints | Some community features limited due to distributed architecture |
 | **Advanced Features** | Aurora-Specific | Not available | Fast Cloning, Global Database, Aurora ML integration |
